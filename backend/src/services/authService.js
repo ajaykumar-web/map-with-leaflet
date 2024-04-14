@@ -2,6 +2,11 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+/**
+ * Registers a new user.
+ * @param {object} userData - The user data containing username, email, and password.
+ * @returns {Promise<object>} - Returns a promise resolving to the newly created user.
+ */
 const registerUser = async (userData) => {
   try {
     const existingUser = await User.findOne({ email: userData.email });
@@ -24,6 +29,11 @@ const registerUser = async (userData) => {
   }
 };
 
+/**
+ * Logs in a user.
+ * @param {object} userData - The user data containing email and password.
+ * @returns {Promise<object>} - Returns a promise resolving to an object containing a JWT token and the user information.
+ */
 const loginUser = async (userData) => {
   try {
     const { email, password } = userData;
@@ -43,8 +53,6 @@ const loginUser = async (userData) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     return { token, user };
-
-    //password check
   } catch (error) {
     throw error;
   }

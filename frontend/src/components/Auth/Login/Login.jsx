@@ -14,6 +14,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import "./Login.css";
 
+/**
+ * Component for user login.
+ * @returns {JSX.Element} - Returns JSX for the login form.
+ */
 function Login() {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -23,6 +27,10 @@ function Login() {
     password: "",
   });
 
+  /**
+   * Updates the form data when input fields change.
+   * @param {Event} e - The input change event.
+   */
   const handleInputUpdate = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -30,8 +38,11 @@ function Login() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  /**
+   * Handles user login.
+   * Sends a POST request to the server with user credentials.
+   */
   const loginUser = async () => {
-    //Login User
     try {
       setIsLoading(true);
       const data = {
@@ -54,6 +65,7 @@ function Login() {
       setIsLoading(false);
     }
   };
+
   return (
     <MDBContainer fluid className="login-body">
       <MDBRow className="d-flex justify-content-center align-items-center h-100">

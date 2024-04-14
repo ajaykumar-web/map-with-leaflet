@@ -11,10 +11,15 @@ import {
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import styles from "./Dashboard.module.css";
 
-export default function Register() {
+/**
+ * Component for the dashboard.
+ * @returns {JSX.Element} - Returns JSX for the dashboard.
+ */
+export default function Dashboard() {
   const isLoggedIn = localStorage.getItem("token") ? true : false;
   const geo = useRef(null);
   const [iten, setIten] = useState(null);
+
   useEffect(() => {
     const load = async () => {
       fetch(
@@ -29,6 +34,7 @@ export default function Register() {
 
     load();
   }, []);
+
   return (
     <section id="map" className={styles.gradient}>
       <MDBContainer className="py-5 h-100">

@@ -16,6 +16,10 @@ import "./Register.css";
 
 import { API_BASE_URL } from "../../../config";
 
+/**
+ * Component for user registration.
+ * @returns {JSX.Element} - Returns JSX for the registration form.
+ */
 function Register() {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -27,6 +31,10 @@ function Register() {
     confirmPassword: "",
   });
 
+  /**
+   * Updates the form data when input fields change.
+   * @param {Event} e - The input change event.
+   */
   const handleInputUpdate = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -34,6 +42,10 @@ function Register() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  /**
+   * Handles user registration.
+   * Sends a POST request to the server with user data.
+   */
   const registerUser = async () => {
     if (formData.password !== formData.confirmPassword) {
       return enqueueSnackbar("Password and confirm password doesn't match", {
@@ -41,7 +53,6 @@ function Register() {
       });
     }
 
-    //Register user
     try {
       setIsLoading(true);
       const data = {

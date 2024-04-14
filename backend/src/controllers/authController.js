@@ -1,13 +1,18 @@
 const authService = require("../services/authService");
 
+/**
+ * Registers a new user.
+ * @async
+ * @param {object} req - The request object containing user data in the body.
+ * @param {object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const register = async (req, res) => {
-  //Try to register
   try {
-    const userData = req.body; //input
+    const userData = req.body;
 
-    const user = await authService.registerUser(userData); //processing
+    const user = await authService.registerUser(userData);
 
-    //Registration is successful
     res.status(201).json({
       message: "User registered successfully",
       userId: user,
@@ -17,6 +22,13 @@ const register = async (req, res) => {
   }
 };
 
+/**
+ * Logs in an existing user.
+ * @async
+ * @param {object} req - The request object containing user data in the body.
+ * @param {object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const login = async (req, res) => {
   try {
     const userData = req.body;
@@ -33,6 +45,13 @@ const login = async (req, res) => {
   }
 };
 
+/**
+ * A sample private endpoint handler.
+ * @async
+ * @param {object} req - The request object.
+ * @param {object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const someData = async (req, res) => {
   res.send("Hurray, You just accessed a private endpoint");
 };
